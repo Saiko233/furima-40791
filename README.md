@@ -7,12 +7,11 @@
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
 | nickname           | string | null: false |
-| name               | string | null: false |
 | last_name          | string | null: false |
 | first_name         | string | null: false |
 | last_name_kana     | string | null: false |
 | first_name_kana    | string | null: false |
-| birth_date	       | integer | null: false,foreign_key: true  |
+| birth_date	       | DATE   | null: false |
 
 
 
@@ -28,10 +27,10 @@ has_many :purchases
 | name         | string     | null: false |
 | description  | text       | null: false |
 | price        | integer    | null: false |
-| category_id  | integer | null: false,foreign_key: true |
-| condition_id | integer | null: false,foreign_key: true |
-| shipping_fee_id | integer | null: false,foreign_key: true |
-| prefecture_id   | integer | null: false,foreign_key: true |
+| category_id  | integer    | null: false |
+| condition_id | integer    | null: false |
+| shipping_fee_id | integer | null: false |
+| prefecture_id   | integer | null: false |
 | user         | references | null: false,foreign_key: true |
 
 ### Association
@@ -48,6 +47,7 @@ has_one :purchase
 ### Association
 has_one :shipping_address
 belongs_to :item
+belongs_to :user
 
 ## shipping_addresses テーブル
 
@@ -58,8 +58,8 @@ belongs_to :item
 | address       | string     | null: false |
 | building      | string     |             |
 | phone_number  | string     | null: false |
-| purchase      | integer    | null: false,foreign_key: true |
-| prefecture_id | integer    | null: false,foreign_key: true |
+| purchase      | references | null: false,foreign_key: true |
+| prefecture_id | integer    | null: false |
 
 ### Association
 belongs_to :purchase
