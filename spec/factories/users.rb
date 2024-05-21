@@ -6,7 +6,7 @@ FactoryBot.define do
     last_name_kana { %w[ヤマダ サトウ スズキ タカハシ タナカ].sample } # カナの名字をサンプルとして使用
     first_name_kana { %w[タロウ ジロウ サブロウ シロウ ゴロウ].sample } # カナの名前をサンプルとして使用
     email { Faker::Internet.email }
-    password { Faker::Internet.password(min_length: 6) }
+    password { Faker::Internet.password(min_length: 6) + '1a' }
     password_confirmation { password }
     birth_date { Faker::Date.birthday }
   end
