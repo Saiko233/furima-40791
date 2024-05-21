@@ -11,7 +11,7 @@
 | first_name         | string | null: false |
 | last_name_kana     | string | null: false |
 | first_name_kana    | string | null: false |
-| birth_date	       | DATE   | null: false |
+| birth_date	       | date   | null: false |
 
 
 
@@ -22,17 +22,17 @@ has_many :purchases
 
 ## items テーブル
 
-| Column       | Type       | Options     |
-| ------------ | ---------- | ----------- |
-| name         | string     | null: false |
-| description  | text       | null: false |
-| price        | integer    | null: false |
-| category_id  | integer    | null: false |
-| condition_id | integer    | null: false |
-| shipping_fee_id | integer | null: false |
-| prefecture_id   | integer | null: false |
-| shipping_day_id | integer | null: false |
-| user         | references | null: false,foreign_key: true |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| name            | string     | null: false |
+| description     | text       | null: false |
+| price           | integer    | null: false |
+| category_id     | integer    | null: false |
+| condition_id    | integer    | null: false |
+| shipping_fee_id | integer    | null: false |
+| prefecture_id   | integer    | null: false |
+| shipping_day_id | integer    | null: false |
+| user            | references | null: false,foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -42,8 +42,8 @@ has_one :purchase
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user    | references    | null: false, foreign_key: true |
-| item    | references    | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 has_one :shipping_address
@@ -52,7 +52,7 @@ belongs_to :user
 
 ## shipping_addresses テーブル
 
-| Column       | Type       | Options     |
+| Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
 | city          | string     | null: false |
 | postal_code   | string     | null: false |
