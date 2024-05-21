@@ -12,16 +12,15 @@ class User < ApplicationRecord
 
   # 新規登録/本人情報確認
   # お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須
-  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/}
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/}
+  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
+  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
   # お名前カナ(全角)は、名字と名前がそれぞれ必須
-  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
-  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
+  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   # 生年月日必須
   validates :birth_date, presence: true
 
   # Association
   has_many :items
   has_many :purchases
-
 end
