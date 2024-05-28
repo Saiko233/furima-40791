@@ -4,10 +4,12 @@ FactoryBot.define do
     prefecture_id { Prefecture.all.sample  }
     city { "Test City" }
     address { "Test Address" }
-    building { "Test Building" }
     phone_number { "1234567890" }
-    user_id { 1 }
-    item_id { 1 }
     token { "2333" }
+    # user_id { 1 }
+    # item_id { 1 }
+    association :user_id
+    association :item_id
+
   end
 end

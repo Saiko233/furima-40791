@@ -3,11 +3,14 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
 
   before do
-    @order = FactoryBot.build(:order)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order, user_id: @user.id, item_id: @item.id)
   end
 
   context '内容に問題ない場合' do
     it "内容があれば保存ができること" do
+      @order.building = nil
       @order.prefecture_id = 1
       expect(@order).to be_valid
     end
@@ -18,6 +21,12 @@ RSpec.describe Order, type: :model do
       @order.postal_code = nil
       @order.valid?
       expect(@order.errors.full_messages).to include("Postal code can't be blank")
+    end
+
+    it "郵便番号が半角ハイフンを含む形でなければ購入できない" do
+      @order.postal_code = 1234567
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Postal code is invalid")
     end
 
     it "都道府県が空では保存ができないこと" do
@@ -42,6 +51,24 @@ RSpec.describe Order, type: :model do
       @order.phone_number = nil
       @order.valid?
       expect(@order.errors.full_messages).to include("Phone number can't be blank")
+    end
+
+    it "電話番号が9桁以下の場合" do
+      @order.phone_number = "12345678"
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it "電話番号が12桁以上の場合" do
+      @order.phone_number = "1234567890123"
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it "電話番号に半角数字以外が含まれている場合" do
+      @order.phone_number = 123-456-7890
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Phone number is invalid")
     end
 
     it "ユーザーIDがない場合は保存できないこと" do

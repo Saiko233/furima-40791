@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    purchase = Purchase.all
     if @item.user_id != current_user.id || @item.purchase.present?
         redirect_to root_path
     end
