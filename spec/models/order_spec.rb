@@ -3,15 +3,14 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
 
   before do
-    @user = FactoryBot.create(:user)
-    @item = FactoryBot.create(:item)
-    @order = FactoryBot.build(:order, user_id: @user.id, item_id: @item.id)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item, user: user)
+    @order = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
   end
 
   context '内容に問題ない場合' do
     it "内容があれば保存ができること" do
       @order.building = nil
-      @order.prefecture_id = 1
       expect(@order).to be_valid
     end
   end
