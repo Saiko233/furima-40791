@@ -16,7 +16,7 @@ RSpec.describe Order, type: :model do
       @order.building = nil
       expect(@order).to be_valid
     end
-   end
+  end
 
   context '内容に問題がある場合' do
     it "郵便番号が空では保存ができないこと" do
