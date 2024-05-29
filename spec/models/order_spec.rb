@@ -10,10 +10,13 @@ RSpec.describe Order, type: :model do
 
   context '内容に問題ない場合' do
     it "内容があれば保存ができること" do
+      expect(@order).to be_valid
+    end
+    it "建物名が空でも保存ができること" do
       @order.building = nil
       expect(@order).to be_valid
     end
-  end
+   end
 
   context '内容に問題がある場合' do
     it "郵便番号が空では保存ができないこと" do
